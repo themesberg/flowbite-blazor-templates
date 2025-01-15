@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "PeakFlames",
+  "classifications": [
+    "Web",
+    "Flowbite",
+    "Blazor",
+    "Photino",
+    "Electron",
+    "Desktop"
+  ],
+  "name": "Flowbite Blazor Desktop Application",
+  "defaultName": "BlazorApp",
+  "description": "A project template for creating a beautiful, modern, and lightweight Blazor Desktop Applications.",
+  "groupIdentity": "Flowbite",
+  "identity": "Flowbite.Templates.Desktop.CSharp.9.0",
+  "preferNameDirectory": true,
+  "primaryOutputs": [
+    {
+      "path": "Flowbite.Desktop.csproj"
+    }
+  ],
+  "shortName": "flowbite-blazor-desktop",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Flowbite.Desktop"
+}

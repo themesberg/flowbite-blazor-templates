@@ -1,0 +1,3 @@
+[submodule "src/Flowbite"]
+	path = src/Flowbite
+	url = https://github.com/schaveyt/flowbite-blazor.git

@@ -1,4 +1,4 @@
-# Flowbite.Wasm
+# Flowbite.Desktop
 
 ## Development Setup
 
@@ -28,20 +28,11 @@
    dotnet build
    ```
 
-1. Run the Blazor WASM Static Web App
+1. Run the Blazor Photinio App Server
 
    ```bash
+   cd src/AppServer
    dotnet run
    ```
 
-   Then open <http://localhost:5269/> in your browser.
-
-## Development Workflow
-
-### Local Development
-
-The solution is configured for two development modes:
-
-1. Debug/Development (default):
-   - Use `dotnet watch`
-   - F5 to run and debug
+   Then a desktop windows will be visible with Flowbite contents.
