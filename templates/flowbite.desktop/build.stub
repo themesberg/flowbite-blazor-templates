@@ -1,0 +1,96 @@
+[CmdletBinding()]
+param(
+    [switch]$dist,
+    [switch]$Help,
+    [string]$version = "1.0.0"
+)
+
+# Validate version format
+if ($version -notmatch '^\d+\.\d+\.\d+$') {
+    Write-Error "Invalid version format. Must be in format: major.minor.patch (e.g. 1.0.0)"
+    exit 1
+}
+
+
+function Show-Usage {
+    Write-Host "Usage: .\build.ps1 [-dist] [-version X.Y.Z] [-Help]"
+    Write-Host ""
+    Write-Host "Options:"
+    Write-Host "  -dist                   # Create the installer after building"
+    Write-Host "  -version               # Specify version number (default: 1.0.0)"
+    Write-Host "  -Help                   # Display this help message"
+    Write-Host ""
+    Write-Host "Examples:"
+    Write-Host "  .\build.ps1             # Build the project"
+    Write-Host "  .\build.ps1 -dist       # Build and create installer"
+    Write-Host "  .\build.ps1 -Help       # Display this help message"
+    Write-Host ""
+}
+
+function Publish-Project {
+    if ($dist) {
+        Write-Host "Publishing project version $version..."
+        # Clean up previous builds
+        Remove-Item -Recurse -Force src/Flowbite.Desktop/publish -ErrorAction SilentlyContinue
+        Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
+        
+        dotnet publish src/Flowbite.Desktop/Flowbite.Desktop.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained `
+            -p:Version=$version `
+            -p:FileVersion=$version `
+            -p:AssemblyVersion=$version
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to publish project."
+            exit 1
+        }
+        Write-Host "Project published successfully."
+    } else {
+        Write-Host "Building project..."
+        dotnet build --project src/Flowbite.Desktop/Flowbite.Desktop.csproj
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to build project."
+            exit 1
+        }
+         Write-Host "Project built successfully."
+    }
+}
+
+function Create-Installer {
+    Write-Host "Creating installer for version $version..."
+    $innoSetupCompiler = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+    if (-not (Test-Path $innoSetupCompiler)) {
+        Write-Error "Inno Setup Compiler not found. Please make sure Inno Setup is installed."
+        exit 1
+    }
+    
+    # Create dist directory if it doesn't exist
+    New-Item -ItemType Directory -Force -Path dist | Out-Null
+    
+    & $innoSetupCompiler "/DAppVersion=$version" "Flowbite.Desktop.iss"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Failed to create installer."
+        exit 1
+    }
+    Write-Host "Installer created successfully."
+}
+
+# Show usage if no parameters were provided
+if ($PSBoundParameters.Count -eq 0) {
+    Show-Usage
+    exit 0
+}
+
+if ($Help) {
+    Show-Usage
+    exit 0
+}
+
+Publish-Project
+
+if ($dist) {
+    Create-Installer
+}
+
+Write-Host "All operations completed successfully."

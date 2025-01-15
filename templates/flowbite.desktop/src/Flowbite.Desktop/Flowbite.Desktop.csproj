@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
+    
+    <!-- Version will be set to a debug version if not overridden by CLI parameter. -->
+		<!-- <Version>0.0.0-$([System.DateTime]::Now.ToString(yyyyMMddHms))</Version> -->
+
+		<!-- Bundle .NET runtime -->
+		<SelfContained>true</SelfContained>
+
+		<!-- Bundle all dependencies into a single executable -->
+		<PublishSingleFile>true</PublishSingleFile>
+		<PublishReadyToRunComposite>true</PublishReadyToRunComposite>
+			
+		<!-- Enable compression for the single executable -->
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+
+		<!--
+		Disable default content for better control of which files are bundled.
+		See https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file#default-content-in-single-file-bundles
+		-->
+		<EnableDefaultContent>false</EnableDefaultContent>
+		<!-- <EnableDefaultContentItems>false</EnableDefaultContentItems> -->
+
+		<!-- Include debug symbols into the executable -->
+		<DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Photino.Blazor" Version="3.1.10" />
+    <PackageReference Include="Flowbite" Version="0.0.*-*" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+		<Content Update="wwwroot\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="favicon.ico">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckBuilt Include="wwwroot/css/app.css" Set="Css" />
+    <UpToDateCheckBuilt Include="wwwroot/css/app.min.css" Set="Css" />
+    <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="wwwroot\css\app.css" />
+    <None Remove="wwwroot\css\app.min.css" />
+    <None Remove="tools\tailwindcss.exe" />
+  </ItemGroup>
+
+  <Target Name="Tailwind" BeforeTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+    <Exec Command=".\tools\tailwindcss.exe -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" />
+  </Target>
+
+  <Target Name="DisableTailwindOnPublish" BeforeTargets="Publish">
+    <PropertyGroup>
+      <DisableTailwind>true</DisableTailwind>
+    </PropertyGroup>
+  </Target>
+
+  <Target AfterTargets="Publish" Name="MovePublishedSingleFile">
+    <!-- Move single file application (Windows, macOS, Linux) to {{ProjectDir}}/publish/build path after build completed -->
+    <ItemGroup>
+      <PublishFile Include="$(PublishDir)\**\*.*" />
+    </ItemGroup>
+
+    <Move
+      SourceFiles="@(PublishFile)"
+      DestinationFolder="$(ProjectDir)\publish\$(AssemblyName).$(Version).$(RuntimeIdentifier)\%(RecursiveDir)"/>
+  </Target>
+
+  <Target AfterTargets="MovePublishedSingleFile" Name="DeleteUnwantedFiles">
+    <!-- Delete JSON and PDB files from the destination folder -->
+    <ItemGroup>
+      <FilesToDelete Include="$(ProjectDir)\publish\$(AssemblyName).$(Version).$(RuntimeIdentifier)\**\*.json" />
+      <FilesToDelete Include="$(ProjectDir)\publish\$(AssemblyName).$(Version).$(RuntimeIdentifier)\**\*.pdb" />
+    </ItemGroup>
+
+    <Delete Files="@(FilesToDelete)" />
+  </Target>
+
+</Project>

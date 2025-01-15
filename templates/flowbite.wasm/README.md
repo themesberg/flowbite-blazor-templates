@@ -1,4 +1,4 @@
-# NAME
+# Flowbite.Wasm
 
 ## Development Setup
 
