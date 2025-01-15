@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+    <PostCSSConfig>postcss.config.js</PostCSSConfig>
+    <TailwindConfig>tailwind.config.js</TailwindConfig>
+    <Version>0.0.1-alpha.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BlazorWasmPrerenderingDeleteLoadingContents>true</BlazorWasmPrerenderingDeleteLoadingContents>
+  </PropertyGroup>
+
+  <ItemGroup>
+    
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Flowbite" Version="0.0.1-alpha.*" />
+    <PackageReference Include="BlazorWasmPreRendering.Build" Version="5.0.0" />
+  </ItemGroup>
+
+  <Target Name="Tailwind" BeforeTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+    <Exec Command=".\tools\tailwindcss.exe -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" />
+  </Target>
+
+  <Target Name="DisableTailwindOnPublish" BeforeTargets="Publish">
+    <PropertyGroup>
+      <DisableTailwind>true</DisableTailwind>
+    </PropertyGroup>
+  </Target>
+
+  <ItemGroup>
+    <UpToDateCheckBuilt Include="wwwroot/css/app.css" Set="Css" />
+    <UpToDateCheckBuilt Include="wwwroot/css/app.min.css" Set="Css" />
+    <UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="wwwroot\css\app.css" />
+    <None Remove="wwwroot\css\app.min.css" />
+    <None Remove="tools\tailwindcss.exe" />
+  </ItemGroup>
+
+
+</Project>
