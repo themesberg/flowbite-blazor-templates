@@ -44,6 +44,8 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 AllowNoIcons=yes
 ; Prevent running multiple instances of installer
 SetupMutex={#MyAppName}Setup
+; Icons
+SetupIconFile=src\Flowbite.Desktop\favicon.ico
 ; Compression
 Compression=lzma
 SolidCompression=yes
@@ -51,10 +53,11 @@ SolidCompression=yes
 [Files]
 Source: "src\Flowbite.Desktop\publish\Flowbite.Desktop.{#AppVersion}.win-x64\Flowbite.Desktop.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "src\Flowbite.Desktop\publish\Flowbite.Desktop.{#AppVersion}.win-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "Flowbite.Desktop.exe"
+Source: "src\Flowbite.Desktop\favicon.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\favicon.ico"
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\favicon.ico"; Tasks: desktopicon
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
