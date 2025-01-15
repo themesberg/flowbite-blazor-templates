@@ -61,8 +61,8 @@ dlldata.c
 BenchmarkDotNet.Artifacts/
 
 # .NET
-Flowbite.Wasm.lock.json
-Flowbite.Wasm.fragment.lock.json
+Flowbite.Wasm.ReplaceMe.lock.json
+Flowbite.Wasm.ReplaceMe.fragment.lock.json
 artifacts/
 
 # Tye
@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Project-Specific
+*tailwindcss*

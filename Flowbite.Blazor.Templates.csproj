@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>0.0.2</PackageVersion>
+		<PackageVersion>0.0.3</PackageVersion>
 		<PackageId>Flowbite.Blazor.Templates</PackageId>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<NoWarn>NU5128</NoWarn>
@@ -26,8 +26,8 @@
 
 	<PropertyGroup>
 		<!-- for templates -->
-		<MicrosoftExtensionsHttpResiliencePackageVersion>9.0.0</MicrosoftExtensionsHttpResiliencePackageVersion>
-		<MicrosoftAspNetCorePackageVersionForNet9>9.0.0</MicrosoftAspNetCorePackageVersionForNet9>
+		<MicrosoftExtensionsHttpResiliencePackageVersion>8.0.0</MicrosoftExtensionsHttpResiliencePackageVersion>
+		<MicrosoftAspNetCorePackageVersionForNet9>8.0.0</MicrosoftAspNetCorePackageVersionForNet9>
 
 	</PropertyGroup>
 
@@ -43,7 +43,7 @@
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="\" />
 		<None Include="templates\flowbite.wasm\wwwroot\favicon.png" Pack="true" PackagePath="\" />
-		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\*.csproj" />
+		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\tools\**" />
 		<Compile Remove="**\*" />
 	</ItemGroup>
 

@@ -23,6 +23,13 @@ if ($currentBranch -ne "main") {
 
 # Build and pack Flowbite.Blazor
 Write-Host "Packing..."
+
+# Delete the .\artifacts directory before running pack
+if (Test-Path(.\artifacts)) {
+  rm -r -force .\artifacts
+}
+
+
 dotnet pack
 if ($LASTEXITCODE -ne 0) { 
   Write-ErrorAndExit "Error occurred while packing Flowbite templates" 
