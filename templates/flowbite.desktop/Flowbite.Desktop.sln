@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E442605F-F815-49C2-8B6C-4DD902D5F266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServer", "src\AppServer\AppServer.csproj", "{FB2A9AA7-E7BE-45D3-A0E1-038090CE3699}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flowbite.Desktop", "src\Flowbite.Desktop\Flowbite.Desktop.csproj", "{FB2A9AA7-E7BE-45D3-A0E1-038090CE3699}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,7 @@
     "Client-Side",
     "CSR"
   ],
-  "name": "Flowbite Blazor WASM Client-Side Applicatin",
+  "name": "Flowbite Blazor WASM Client-Side Application",
   "defaultName": "BlazorApp",
   "description": "A project template for creating a beautiful, modern, and responsive Blazor WebAssembly Client-Side Applications. This template can be used for web apps with rich dynamic user interfaces (UIs).",
   "groupIdentity": "Flowbite.Wasm",

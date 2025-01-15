@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
-using AppServer;
+using Flowbite.Desktop;
 
 class Program
 {
@@ -14,7 +14,7 @@ class Program
         appBuilder.Services.AddLogging();
 
         // register root component and selector
-        appBuilder.RootComponents.Add<AppServer.App>("app");
+        appBuilder.RootComponents.Add<Flowbite.Desktop.App>("app");
 
         var app = appBuilder.Build();
 
