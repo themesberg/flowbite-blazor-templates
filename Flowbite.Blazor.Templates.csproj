@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>0.0.4</PackageVersion>
+		<PackageVersion>0.0.5</PackageVersion>
 		<PackageId>Flowbite.Blazor.Templates</PackageId>
 		<TargetFramework>netstandard2.1</TargetFramework>
-		<NoWarn>NU5128</NoWarn>
+		<NoWarn>$(NoWarn);NU5128</NoWarn>
 		<Authors>PeakFlames</Authors>
 		<Title>Flowbite Blazor Templates</Title>
 		<PackageIcon>favicon.png</PackageIcon>
@@ -14,12 +14,17 @@
 		<Description>Project templates for creating a Flowbite Blazor WebAssembly Standalone app with more to come.</Description>
 		<License>MIT</License>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/peakflames/flowbite-blazor</PackageProjectUrl>
-		<PackageTags>templates;blazor;flowbite;web-assembly</PackageTags>
+		<PackageProjectUrl>https://flowbite-blazor.peakflames.org</PackageProjectUrl>
+		<PackageTags>templates;blazor;flowbite;web-assembly;desktop</PackageTags>
+		<RepositoryType>git</RepositoryType>
+    	<RepositoryUrl>https://github.com/peakflames/flowbite-blazor</RepositoryUrl>
+		
 		
 		<IncludeContentInPack>true</IncludeContentInPack>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<ContentTargetFolders>Content</ContentTargetFolders>
+		<EnableDefaultItems>true</EnableDefaultItems>
+		<NoDefaultExcludes>true</NoDefaultExcludes>
 		
 
 	</PropertyGroup>
@@ -43,7 +48,7 @@
 	<ItemGroup>
 		<None Include="README.md" Pack="true" PackagePath="\" />
 		<None Include="templates\flowbite.wasm\wwwroot\favicon.png" Pack="true" PackagePath="\" />
-		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\**\tools\**" />
 		<Compile Remove="**\*" />
 	</ItemGroup>
 

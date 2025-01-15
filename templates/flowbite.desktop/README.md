@@ -36,3 +36,18 @@
    ```
 
    Then a desktop windows will be visible with Flowbite contents.
+
+
+## Deployment Setup
+
+### Windows x64
+
+The installer is created using [Inno Setup](https://jrsoftware.org/isinfo.php) and the [ISCC](https://jrsoftware.org/ishelp/index.php?topic=compilercmdline) command line tool.
+
+To create the installer, run the following command from the project root directory:
+
+```bash
+.\build.ps1 -dist
+```
+
+This will create the installer in the `dist` directory.

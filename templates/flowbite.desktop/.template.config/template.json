@@ -10,20 +10,32 @@
     "Desktop"
   ],
   "name": "Flowbite Blazor Desktop Application",
-  "defaultName": "BlazorApp",
+  "defaultName": "BlazorDesktopApp",
   "description": "A project template for creating a beautiful, modern, and lightweight Blazor Desktop Applications.",
-  "groupIdentity": "Flowbite",
+  "groupIdentity": "Flowbite.Desktop",
   "identity": "Flowbite.Templates.Desktop.CSharp.9.0",
   "preferNameDirectory": true,
   "primaryOutputs": [
     {
-      "path": "Flowbite.Desktop.csproj"
+      "path": "Flowbite.Desktop.sln"
     }
   ],
   "shortName": "flowbite-blazor-desktop",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "solution"
   },
-  "sourceName": "Flowbite.Desktop"
+  "sourceName": "Flowbite.Desktop",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ ".template_config/**" ],
+          "rename": {
+            "build.stub": "build.ps1"
+          }
+        }
+      ]
+    }
+  ]
 }

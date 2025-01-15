@@ -12,7 +12,7 @@
   "name": "Flowbite Blazor WASM Client-Side Applicatin",
   "defaultName": "BlazorApp",
   "description": "A project template for creating a beautiful, modern, and responsive Blazor WebAssembly Client-Side Applications. This template can be used for web apps with rich dynamic user interfaces (UIs).",
-  "groupIdentity": "Flowbite",
+  "groupIdentity": "Flowbite.Wasm",
   "identity": "Flowbite.Templates.Wasm.CSharp.9.0",
   "preferNameDirectory": true,
   "primaryOutputs": [
@@ -25,5 +25,14 @@
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "Flowbite.Wasm"
+  "sourceName": "Flowbite.Wasm",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ ".template_config/**" ]
+        }
+      ]
+    }
+  ]
 }

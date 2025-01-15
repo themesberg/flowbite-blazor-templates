@@ -4,17 +4,19 @@ param(
     [switch]$Help
 )
 
+
 function Show-Usage {
     Write-Host "Usage: .\build.ps1 [-dist] [-Help]"
     Write-Host ""
     Write-Host "Options:"
-    Write-Host "  -dist          Create the installer after building"
-    Write-Host "  -Help               Display this help message"
+    Write-Host "  -dist                   # Create the installer after building"
+    Write-Host "  -Help                   # Display this help message"
     Write-Host ""
     Write-Host "Examples:"
-    Write-Host "  .\build.ps1                 # Build the project"
+    Write-Host "  .\build.ps1             # Build the project"
     Write-Host "  .\build.ps1 -dist       # Build and create installer"
-    Write-Host "  .\build.ps1 -Help           # Display this help message"
+    Write-Host "  .\build.ps1 -Help       # Display this help message"
+    Write-Host ""
 }
 
 function Publish-Project {
@@ -46,7 +48,7 @@ function Create-Installer {
         exit 1
     }
     
-    & $innoSetupCompiler "AppServerSetup.iss"
+    & $innoSetupCompiler "Flowbite.Desktop.iss"
     if ($LASTEXITCODE -ne 0) {
         Write-Error "Failed to create installer."
         exit 1
@@ -54,7 +56,12 @@ function Create-Installer {
     Write-Host "Installer created successfully."
 }
 
-# Main script execution
+# Show usage if no parameters were provided
+if ($PSBoundParameters.Count -eq 0) {
+    Show-Usage
+    exit 0
+}
+
 if ($Help) {
     Show-Usage
     exit 0

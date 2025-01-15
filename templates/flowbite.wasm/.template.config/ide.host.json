@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json.schemastore.org/vs-2017.3.host",
+  "defaultSymbolVisibility": true,
+  "icon": "icon.png",
+  "order": 0,
+  "symbolInfo": [
+  ]
+}
