@@ -15,6 +15,12 @@ if (-not $apiKey) {
   Write-ErrorAndExit "NuGet API Key not found in environment variable 'NUGET_API_KEY'. Please set the environment variable and try again."
 }
 
+# Check if current branch is main
+$currentBranch = git rev-parse --abbrev-ref HEAD
+if ($currentBranch -ne "main") {
+  Write-ErrorAndExit "Publishing is only allowed from the 'main' branch. Current branch: $currentBranch"
+}
+
 # Build and pack Flowbite.Blazor
 Write-Host "Packing..."
 dotnet pack
