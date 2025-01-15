@@ -25,7 +25,7 @@ if ($currentBranch -ne "main") {
 Write-Host "Packing..."
 
 # Delete the .\artifacts directory before running pack
-if (Test-Path(.\artifacts)) {
+if (Test-Path ".\artifacts") {
   rm -r -force .\artifacts
 }
 
