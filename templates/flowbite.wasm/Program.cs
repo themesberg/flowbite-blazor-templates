@@ -1,7 +1,7 @@
 
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Flowbite.Wasm.ReplaceMe;
+using Flowbite.Wasm;
 using Flowbite.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
