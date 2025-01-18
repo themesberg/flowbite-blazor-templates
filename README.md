@@ -13,13 +13,19 @@ dotnet new install Flowbite.Blazor.Templates
 
 After installing the templates you can create new a project from either the CLI or by creating a new project in Visual Studio Code or VS2022.
 
-For creating a Flowbite Blazor WebAssembly Standalone App project from the CLI:
+- For creating a Flowbite Blazor WebAssembly Standalone App project from the CLI:
 
-~~~sh
-dotnet new flowbite-blazor-wasm -o {your project name}
-~~~
+    ~~~sh
+    dotnet new flowbite-blazor-wasm -o {your project name}
+    # Open the project README.md to complete the setup and run the app
+    ~~~
 
-In Visual Studio 2022 you can create a new project by selecting desired template in the 'File->New->Project'-dialog.
+- For creating a Flowbite Blazor WebAssembly Standalone App project from the CLI:
+
+    ~~~sh
+    dotnet new flowbite-blazor-desktop -o {your project name}
+    # Open the project README.md to complete the setup and run the app
+    ~~~
 
 ## Uninstalling the templates
 
