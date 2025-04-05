@@ -34,7 +34,7 @@
 
   <ItemGroup>
     <PackageReference Include="Photino.Blazor" Version="3.1.10" />
-    <PackageReference Include="Flowbite" Version="0.0.*-*" />
+    <PackageReference Include="Flowbite" Version="[0.0.10-alpha,)" />
   </ItemGroup>
 
 
