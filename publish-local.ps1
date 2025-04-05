@@ -36,9 +36,13 @@ if (-not $nugetPackage) {
 # Publish to NuGet.org
 Write-Host "Installing the nuget package locally..."
 
+# Get the file name of the package by searching the directory for the .nupkg file
+$nugetPackageFileName = Get-ChildItem -Path .\artifacts -Filter "*.nupkg" -Recurse | Select-Object -ExpandProperty Name -First 1
+
+
 # Install the nuget package locally
 dotnet new uninstall Flowbite.Blazor.Templates
-dotnet new install ./artifacts/Flowbite.Blazor.Templates.0.0.10.nupkg
+dotnet new install ./artifacts/$nugetPackageFileName
 if ($LASTEXITCODE -ne 0) {
   Write-ErrorAndExit "An error occurred while publishing Flowbite templates"
 }
