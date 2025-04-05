@@ -215,7 +215,7 @@
 
     private List<IconInfo> GetAllIcons()
     {
-        return typeof(IconBase).Assembly
+        var allIcons = typeof(IconBase).Assembly
             .GetTypes()
             .Where(t => t.Namespace == "Flowbite.Icons" && 
                         t.Name.EndsWith("Icon") && 
@@ -225,6 +225,21 @@
                 t
             ))
             .ToList();
+        
+        var extendedIcons = typeof(Flowbite.Icons.Extended.FlagIcon).Assembly
+            .GetTypes()
+            .Where(t => t.Namespace == "Flowbite.Icons.Extended" && 
+                        t.Name.EndsWith("Icon") && 
+                        !t.Name.Contains("Base"))
+            .Select(t => new IconInfo(
+                t.Name.Replace("Icon", ""), 
+                t
+            ))
+            .ToList();
+        
+        // return the combined list
+        allIcons.AddRange(extendedIcons);
+        return allIcons;
     }
 
     private IconBase CreateIconInstance(Type iconType)
