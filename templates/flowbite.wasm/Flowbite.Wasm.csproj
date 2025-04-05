@@ -23,8 +23,32 @@
     <PackageReference Include="BlazorWasmPreRendering.Build" Version="5.0.0" />
   </ItemGroup>
 
-  <Target Name="Tailwind" BeforeTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
-    <Exec Command=".\tools\tailwindcss.exe -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" />
+  <Target Name="TailwindWindows" BeforeTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+    <Error Condition="!Exists('.\tools\tailwindcss.exe')" Text="Tailwind executable not found at .\tools\tailwindcss.exe" />
+    <Exec 
+      Command=".\tools\tailwindcss.exe -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" 
+      ConsoleToMSBuild="true"
+      StandardOutputImportance="high"
+      StandardErrorImportance="high"
+      IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="TailwindOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="TailwindExitCode" />
+    </Exec>
+    <Error Condition="'$(TailwindExitCode)' != '0'" Text="Tailwind command failed with exit code $(TailwindExitCode). Output: $(TailwindOutput)" />
+  </Target>
+
+  <Target Name="TailwindNonWindows" BeforeTargets="Build" Condition="'$(OS)' != 'Windows_NT'">
+    <Error Condition="!Exists('./tools/tailwindcss')" Text="Tailwind executable not found at ./tools/tailwindcss" />
+    <Exec 
+      Command="./tools/tailwindcss -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" 
+      ConsoleToMSBuild="true"
+      StandardOutputImportance="high"
+      StandardErrorImportance="high"
+      IgnoreExitCode="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="TailwindOutput" />
+      <Output TaskParameter="ExitCode" PropertyName="TailwindExitCode" />
+    </Exec>
+    <Error Condition="'$(TailwindExitCode)' != '0'" Text="Tailwind command failed with exit code $(TailwindExitCode). Output: $(TailwindOutput)" />
   </Target>
 
   <Target Name="DisableTailwindOnPublish" BeforeTargets="Publish">
@@ -44,6 +68,7 @@
     <None Remove="wwwroot\css\app.css" />
     <None Remove="wwwroot\css\app.min.css" />
     <None Remove="tools\tailwindcss.exe" />
+    <None Remove="tools\tailwindcss" />
   </ItemGroup>
 
 
