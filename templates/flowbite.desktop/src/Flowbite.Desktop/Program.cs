@@ -3,6 +3,8 @@ using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Photino.Blazor;
 using Flowbite.Desktop;
+using Flowbite.Desktop.Services;
+using Flowbite.Services;
 
 class Program
 {
@@ -12,6 +14,8 @@ class Program
         var appBuilder = PhotinoBlazorAppBuilder.CreateDefault(args);
 
         appBuilder.Services.AddLogging();
+        appBuilder.Services.AddFlowbite();
+        appBuilder.Services.AddScoped<PokemonService>();
 
         // register root component and selector
         appBuilder.RootComponents.Add<Flowbite.Desktop.App>("app");
