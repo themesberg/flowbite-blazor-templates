@@ -1,5 +1,9 @@
 # Changlog
 
+## 0.1.1 (UNDER WORK)
+
+- TBD
+
 ## 0.1.0
 
 upgrade Flowbite packages and update asset references
