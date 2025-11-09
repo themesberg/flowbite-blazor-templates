@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # Get NuGet API Key from environment variable
 $apiKey = $env:NUGET_API_KEY
 
@@ -25,9 +27,7 @@ if ($currentBranch -ne "main") {
 Write-Host "Packing..."
 
 # Delete the .\artifacts directory before running pack
-if (Test-Path ".\artifacts") {
-  rm -r -force .\artifacts
-}
+Remove-Item -Path ".\artifacts" -Recurse -Force -ErrorAction SilentlyContinue
 
 
 dotnet pack
