@@ -5,7 +5,6 @@
 @using Flowbite.Maui.Domain
 @using Flowbite.Maui.Components.Crud
 @using System.Text.Json
-@inject HttpClient Http
 @inject IToastService ToastService
 
 <main class="relative h-full w-full overflow-y-auto bg-white dark:bg-gray-800">
@@ -187,7 +186,9 @@
         IsLoading = true;
         try
         {
-            var json = await Http.GetStringAsync("data/products.json");
+            using var stream = await FileSystem.OpenAppPackageFileAsync("wwwroot/data/products.json");
+            using var reader = new StreamReader(stream);
+            var json = await reader.ReadToEndAsync();
             ProductsList = JsonSerializer.Deserialize<List<Product>>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true

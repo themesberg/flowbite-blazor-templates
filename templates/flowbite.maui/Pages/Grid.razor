@@ -2,11 +2,11 @@
 
 @using QuickGridAlign = Microsoft.AspNetCore.Components.QuickGrid.Align
 @using Flowbite.Maui.Domain
-@inject HttpClient Http
+@using System.Text.Json
 
 <AppPageTitle Title="Products Grid" />
 
-<h1 class="mb-2 text-2xl font-semibold">Products Grid</h1>
+<h1 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Products Grid</h1>
 
 <div class="grid flowbite-grid text-xs">
   <QuickGrid Items="@FilteredProducts" Theme="flowbite">
@@ -45,7 +45,20 @@
 
   protected override async Task OnInitializedAsync()
   {
-    var data = await Http.GetFromJsonAsync<List<Product>>("data/products.json");
-    _products = data ?? new List<Product>();
+    try
+    {
+      using var stream = await FileSystem.OpenAppPackageFileAsync("wwwroot/data/products.json");
+      using var reader = new StreamReader(stream);
+      var json = await reader.ReadToEndAsync();
+      _products = JsonSerializer.Deserialize<List<Product>>(json, new JsonSerializerOptions
+      {
+        PropertyNameCaseInsensitive = true
+      }) ?? new List<Product>();
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine($"Error loading products: {ex.Message}");
+      _products = new List<Product>();
+    }
   }
 }

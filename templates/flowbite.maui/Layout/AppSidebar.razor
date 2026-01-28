@@ -10,20 +10,19 @@
         </SidebarItem>
 
         <SidebarItem
-            Href="/components/productdrawer"
+            Href="/crud/products"
             Icon="@(new GridIcon())">
-            Product Management
+            Products
+        </SidebarItem>
+        <SidebarItem
+            Href="/crud/users"
+            Icon="@(new UsersIcon())">
+            Users
         </SidebarItem>
         <SidebarItem
             Href="/grid"
             Icon="@(new TableRowIcon())">
             Products Grid
-        </SidebarItem>
-
-        <SidebarItem
-            Href="/crud/products"
-            Icon="@(new ListIcon())">
-            CRUD
         </SidebarItem>
 
         <SidebarItem
@@ -36,19 +35,44 @@
             <SidebarItem
                 Href="/layouts/stacked"
                 Icon="@(new TableRowIcon())">
-                Layouts
+                Layout: Stacked
+            </SidebarItem>
+            <SidebarItem
+                Href="/layouts/sidebar"
+                Icon="@(new TableRowIcon())">
+                Layout: Sidebar
             </SidebarItem>
 
             <SidebarItem
                 Href="/pages/pricing"
                 Icon="@(new FileIcon())">
-                Pages
+                Pricing
+            </SidebarItem>
+            <SidebarItem
+                Href="/errors/400"
+                Icon="@(new FileIcon())">
+                Maintenance
+            </SidebarItem>
+            <SidebarItem
+                Href="/errors/404"
+                Icon="@(new FileIcon())">
+                404 Not Found
+            </SidebarItem>
+            <SidebarItem
+                Href="/errors/500"
+                Icon="@(new FileIcon())">
+                500 Server Error
             </SidebarItem>
 
             <SidebarItem
                 Href="/playground/stacked"
                 Icon="@(new RocketIcon())">
-                Playground
+                Playground: Stacked
+            </SidebarItem>
+            <SidebarItem
+                Href="/playground/sidebar"
+                Icon="@(new RocketIcon())">
+                Playground: Sidebar
             </SidebarItem>
 
             <SidebarItem
@@ -62,7 +86,27 @@
             <SidebarItem
                 Href="/authentication/sign-in"
                 Icon="@(new LockOpenIcon())">
-                Authentication
+                Sign In
+            </SidebarItem>
+            <SidebarItem
+                Href="/authentication/sign-up"
+                Icon="@(new LockOpenIcon())">
+                Sign Up
+            </SidebarItem>
+            <SidebarItem
+                Href="/authentication/forgot-password"
+                Icon="@(new LockOpenIcon())">
+                Forgot Password
+            </SidebarItem>
+            <SidebarItem
+                Href="/authentication/reset-password"
+                Icon="@(new LockOpenIcon())">
+                Reset Password
+            </SidebarItem>
+            <SidebarItem
+                Href="/authentication/profile-lock"
+                Icon="@(new LockOpenIcon())">
+                Profile Lock
             </SidebarItem>
         </SidebarItemGroup>
 
@@ -73,7 +117,7 @@
                 Quickstart
             </SidebarItem>
             <SidebarItem
-                Href="https://github.com/peakflames/flowbite-blazor-admin-dashboard/"
+                Href="https://github.com/themesberg/flowbite-blazor-templates"
                 Icon="@(new GithubIcon())">
                 Github Repository
             </SidebarItem>
@@ -83,7 +127,7 @@
                 Flowbite Blazor
             </SidebarItem>
             <SidebarItem
-                Href="https://github.com/peakflames/flowbite-blazor-admin-dashboard/issues"
+                Href="https://github.com/themesberg/flowbite-blazor-templates/issues"
                 Icon="@(new QuestionCircleIcon())">
                 Support
             </SidebarItem>

@@ -12,7 +12,6 @@
     --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
-    --color-red-700: oklch(50.5% 0.213 27.518);
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-red-900: oklch(39.6% 0.141 25.723);
     --color-amber-100: oklch(96.2% 0.059 95.617);
@@ -272,11 +271,17 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-4 {
+    top: calc(var(--spacing) * 4);
+  }
   .-left-4 {
     left: calc(var(--spacing) * -4);
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
+  }
+  .left-4 {
+    left: calc(var(--spacing) * 4);
   }
   .z-10 {
     z-index: 10;
@@ -289,6 +294,9 @@
   }
   .z-40 {
     z-index: 40;
+  }
+  .z-50 {
+    z-index: 50;
   }
   .col-span-2 {
     grid-column: span 2 / span 2;
@@ -472,6 +480,9 @@
   }
   .h-60 {
     height: calc(var(--spacing) * 60);
+  }
+  .h-64 {
+    height: calc(var(--spacing) * 64);
   }
   .h-80 {
     height: calc(var(--spacing) * 80);
@@ -894,9 +905,6 @@
   .bg-red-100 {
     background-color: var(--color-red-100);
   }
-  .bg-red-300 {
-    background-color: var(--color-red-300);
-  }
   .bg-red-500 {
     background-color: var(--color-red-500);
   }
@@ -1134,9 +1142,6 @@
   .text-red-800 {
     color: var(--color-red-800);
   }
-  .text-red-900 {
-    color: var(--color-red-900);
-  }
   .text-teal-500 {
     color: var(--color-teal-500);
   }
@@ -1245,6 +1250,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-100);
+      }
+    }
+  }
+  .hover\:bg-gray-200 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-gray-200);
       }
     }
   }
@@ -1871,11 +1883,6 @@
       }
     }
   }
-  .dark\:bg-red-700 {
-    &:is(.dark *) {
-      background-color: var(--color-red-700);
-    }
-  }
   .dark\:bg-red-900\/50 {
     &:is(.dark *) {
       background-color: color-mix(in srgb, oklch(39.6% 0.141 25.723) 50%, transparent);
@@ -1942,11 +1949,6 @@
   .dark\:text-purple-500 {
     &:is(.dark *) {
       color: var(--color-purple-500);
-    }
-  }
-  .dark\:text-red-100 {
-    &:is(.dark *) {
-      color: var(--color-red-100);
     }
   }
   .dark\:text-red-300 {
@@ -2093,6 +2095,16 @@ img.relative.inline-block.rounded-full {
   position: fixed;
   width: 100%;
   z-index: 1000;
+  max-height: 150px;
+  overflow-y: auto;
+}
+#blazor-error-ui #blazor-error-message {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: block;
+  color: #333;
+  font-family: monospace;
+  font-size: 12px;
 }
 #blazor-error-ui .dismiss {
   cursor: pointer;

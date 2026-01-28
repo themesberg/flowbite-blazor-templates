@@ -6,7 +6,6 @@
 @using Flowbite.Maui.Components
 @using Flowbite.Maui.Components.Crud
 @using System.Text.Json
-@inject HttpClient Http
 @inject IToastService ToastService
 
 <main class="relative h-full w-full overflow-y-auto bg-white dark:bg-gray-800">
@@ -189,7 +188,9 @@
         IsLoading = true;
         try
         {
-            var json = await Http.GetStringAsync("data/users.json");
+            using var stream = await FileSystem.OpenAppPackageFileAsync("wwwroot/data/users.json");
+            using var reader = new StreamReader(stream);
+            var json = await reader.ReadToEndAsync();
             UsersList = JsonSerializer.Deserialize<List<User>>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
