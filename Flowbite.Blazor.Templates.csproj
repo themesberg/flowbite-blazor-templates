@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>0.1.1</PackageVersion>
+		<PackageVersion>0.2.0</PackageVersion>
 		<PackageId>Flowbite.Blazor.Templates</PackageId>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<NoWarn>$(NoWarn);NU5128</NoWarn>
@@ -11,11 +11,11 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		
 		<Copyright>© PeakFlames (c) 2025. All rights reserved.</Copyright>
-		<Description>Project templates for creating a Flowbite Blazor WebAssembly Standalone app with more to come.</Description>
+		<Description>Project templates for creating Flowbite Blazor admin dashboard applications. Includes WASM and .NET MAUI Blazor Hybrid options with ApexCharts integration.</Description>
 		<License>MIT</License>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://flowbite-blazor.peakflames.org</PackageProjectUrl>
-		<PackageTags>templates;blazor;flowbite;web-assembly;desktop</PackageTags>
+		<PackageTags>templates;blazor;flowbite;web-assembly;maui;admin-dashboard;apexcharts</PackageTags>
 		<RepositoryType>git</RepositoryType>
     	<RepositoryUrl>https://github.com/peakflames/flowbite-blazor</RepositoryUrl>
 		

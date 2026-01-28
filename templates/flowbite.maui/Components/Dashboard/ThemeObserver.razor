@@ -1,0 +1,69 @@
+@implements IAsyncDisposable
+@inject ThemeService ThemeService
+@inject IApexChartService ChartService
+
+@code {
+  private bool _disposed;
+  private bool _chartsReady;
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (!firstRender || _disposed)
+    {
+      return;
+    }
+
+    ThemeService.ThemeChanged += HandleThemeChanged;
+
+    try
+    {
+      // Add delay for MAUI WebView initialization
+      await Task.Delay(500);
+
+      var isDarkMode = await ThemeService.InitializeAsync();
+      await ApplyThemeAsync(isDarkMode);
+      _chartsReady = true;
+    }
+    catch (Exception)
+    {
+      // Ignore errors during initialization - charts may not be ready
+    }
+  }
+
+  private void HandleThemeChanged(bool isDark)
+  {
+    if (_chartsReady)
+    {
+      _ = InvokeAsync(() => ApplyThemeAsync(isDark));
+    }
+  }
+
+  private async Task ApplyThemeAsync(bool isDark)
+  {
+    try
+    {
+      var options = DashboardChartOptions.CreateGlobalDefaults(isDark);
+      await ChartService.SetGlobalOptionsAsync(options, true);
+    }
+    catch (NullReferenceException)
+    {
+      // Charts not ready yet - ignore
+    }
+    catch (InvalidOperationException)
+    {
+      // WebView context not ready - ignore
+    }
+  }
+
+  public async ValueTask DisposeAsync()
+  {
+    if (_disposed)
+    {
+      return;
+    }
+
+    ThemeService.ThemeChanged -= HandleThemeChanged;
+    _disposed = true;
+    await Task.CompletedTask;
+  }
+}

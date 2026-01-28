@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+@source "../../**/*.{razor,html,cshtml,cs}";
+
+/* Avatar images should crop to fit their fixed size container */
+img.relative.inline-block.rounded-full {
+    object-fit: cover;
+}
 
 
 /* Microsoft Blazor  ------------------------------------------------------------------------------------------------------------------ */
@@ -47,3 +52,15 @@
     top: 0.5rem;
 }
 
+/* ApexCharts tooltip styling
+   Note: Dark mode tooltip styling has limited effect due to ApexCharts
+   dynamically managing styles via JavaScript. Light mode works correctly. */
+.apexcharts-tooltip.flowbite-tooltip {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+html.dark .apexcharts-tooltip.flowbite-tooltip {
+    background-color: #1f2937 !important;
+    border: 1px solid #374151 !important;
+}

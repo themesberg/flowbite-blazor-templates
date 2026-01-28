@@ -1,52 +1,116 @@
-> **IMPORTANT!!**
-> Just as with the standard Blazor Web App template, Blazor will use SSR by default. If you want to have interactive components, make sure you add a rendermode to the app, page or component!
+# Flowbite Blazor Templates
+
+Project templates for creating beautiful admin dashboards with Flowbite Blazor components. Includes both WebAssembly (WASM) and .NET MAUI Blazor Hybrid options.
+
+## Features
+
+- **Full Admin Dashboard** - Complete dashboard with charts, CRUD operations, settings, and more
+- **Flowbite Blazor UI** - Beautiful, responsive components from the Flowbite design system
+- **Tailwind CSS v4** - Modern styling with automatic CSS compilation
+- **ApexCharts Integration** - Interactive data visualization
+- **Dark Mode Support** - Built-in theme switching
+- **Prerendering (WASM)** - Fast initial load with static prerendering
+
+## Available Templates
+
+| Template | Short Name | Description |
+|----------|------------|-------------|
+| **Flowbite Blazor WASM Admin Dashboard** | `flowbite-blazor-wasm` | Blazor WebAssembly app with prerendering (.NET 9) |
+| **Flowbite Blazor MAUI Admin Dashboard** | `flowbite-blazor-maui` | .NET MAUI Blazor Hybrid desktop app (.NET 10) |
 
 ## Installation
 
-Install the templates by running the command:
+Install the templates by running:
 
-~~~sh
+```sh
 dotnet new install Flowbite.Blazor.Templates
-~~~
+```
 
 ## Usage
 
-After installing the templates you can create new a project from either the CLI or by creating a new project in Visual Studio Code or VS2022.
+### WebAssembly Template
 
-- For creating a Flowbite Blazor WebAssembly Standalone App project from the CLI:
+Create a new Blazor WASM admin dashboard:
 
-    ~~~sh
-    dotnet new flowbite-blazor-wasm -o {your project name}
-    # Open the project README.md to complete the setup and run the app
-    ~~~
+```sh
+dotnet new flowbite-blazor-wasm -o MyDashboard
+cd MyDashboard
 
-- For creating a Flowbite Blazor WebAssembly Standalone App project from the CLI:
+# Build and run (auto-downloads Tailwind CSS)
+python build.py start
 
-    ~~~sh
-    dotnet new flowbite-blazor-desktop -o {your project name}
-    # Open the project README.md to complete the setup and run the app
-    ~~~
+# Open http://localhost:5269
+```
 
-## Uninstalling the templates
+### MAUI Template
 
-If you want to uninstall the templates, both from the CLI and Visual Studio 2022,  run the following command:
+Create a new .NET MAUI Blazor Hybrid desktop app:
 
-~~~sh
+```sh
+dotnet new flowbite-blazor-maui -o MyDesktopApp
+cd MyDesktopApp
+
+# Build and run (auto-downloads Tailwind CSS)
+python build.py run
+```
+
+**Note:** MAUI template requires .NET 10 SDK and supports Windows and macOS.
+
+## Build Commands
+
+Both templates include a `build.py` script for common operations:
+
+### WASM Commands
+
+```sh
+python build.py build      # Build the solution
+python build.py run        # Run in foreground
+python build.py start      # Build and run in background
+python build.py stop       # Stop background process
+python build.py status     # Check if running
+python build.py watch      # Hot reload development
+python build.py publish    # Create production build
+python build.py test-publish  # Test prerendering
+```
+
+### MAUI Commands
+
+```sh
+python build.py build      # Build the application
+python build.py run        # Build and run
+python build.py publish    # Create release build
+python build.py clean      # Clean build artifacts
+```
+
+## Prerequisites
+
+- **Python 3** - For build scripts
+- **.NET 9 SDK** - For WASM template
+- **.NET 10 SDK** - For MAUI template
+- **psutil** (optional) - For WASM background process management: `pip install psutil`
+
+## Uninstalling
+
+To uninstall the templates:
+
+```sh
 dotnet new uninstall Flowbite.Blazor.Templates
-~~~
-
-## Support
-
-The Flowbite Blazor library is an open source project. It is built and maintained by PeakFlames maintainers (**and** other contributors)
-and offers support, like most other open source projects, on a best effort base through the GitHub repository **only**.
-
+```
 
 ## Development
 
-To insall the templates locally, run the following command:
+To install templates locally for development:
 
-~~~sh
+```sh
 ./publish-local.ps1
-~~~
+```
 
-Then use the tempaltes as you would normally.
+Then use the templates as normal with `dotnet new`.
+
+## Support
+
+The Flowbite Blazor library is an open source project maintained by PeakFlames and other contributors. Support is provided on a best effort basis through the GitHub repository.
+
+## License
+
+MIT

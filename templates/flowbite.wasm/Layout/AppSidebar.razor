@@ -2,31 +2,133 @@
 
 <div id="da-sidebar-outlet" class="h-full">
     <Sidebar class="h-full">
+
         
-        <SidebarItem 
-            Href="/"
+        <SidebarItem
+            Href="/dashboard"
             Icon="@(new HomeIcon())">
-            Home
+            Dashboard
         </SidebarItem>
-        <SidebarItem 
-            Href="/counter"
-            Icon="@(new PlusIcon())">
-            Counter
-        </SidebarItem>
-        <SidebarItem 
-            Href="/weather"
-            Icon="@(new InfoCircleIcon())">
-            Weather
-        </SidebarItem>
-        <SidebarItem 
-            Href="/grid"
-            Icon="@(new InsertTableIcon())">
-            Grid
+
+        <SidebarItem
+            Href="/components/productdrawer"
+            Icon="@(new GridIcon())">
+            Product Management
         </SidebarItem>
         <SidebarItem
-            Href="/icons"
-            Icon="@(new StarIcon())">
-            Icons
+            Href="/grid"
+            Icon="@(new TableRowIcon())">
+            Products Grid
         </SidebarItem>
+
+        <SidebarCollapse
+            Label="CRUD"
+            Icon="@(new ListIcon())">
+            <SidebarItem Href="/crud/products">
+                Products
+            </SidebarItem>
+            <SidebarItem Href="/crud/users">
+                Users
+            </SidebarItem>
+        </SidebarCollapse>
+
+        <SidebarItem
+            Href="/settings"
+            Icon="@(new GearIcon())">
+            Settings
+        </SidebarItem>
+        
+
+        <SidebarItemGroup AdditionalClasses="mt-4 mb-4">
+            <SidebarCollapse
+                Label="Layouts"
+                Icon="@(new TableRowIcon())">
+                <SidebarItem Href="/layouts/stacked">
+                    Stacked
+                </SidebarItem>
+                <SidebarItem Href="/layouts/sidebar">
+                    Sidebar
+                </SidebarItem>
+            </SidebarCollapse>
+
+            <SidebarCollapse
+                Label="Pages"
+                Icon="@(new FileIcon())">
+                <SidebarItem Href="/pages/pricing">
+                    Pricing
+                </SidebarItem>
+                <SidebarItem Href="/errors/400">
+                    Maintenance
+                </SidebarItem>
+                <SidebarItem Href="/errors/404">
+                    404 not found
+                </SidebarItem>
+                <SidebarItem Href="/errors/500">
+                    500 server error
+                </SidebarItem>
+            </SidebarCollapse>
+
+            <SidebarCollapse
+                Label="Playground"
+                Icon="@(new RocketIcon())">
+                <SidebarItem Href="/playground/stacked">
+                    Stacked
+                </SidebarItem>
+                <SidebarItem Href="/playground/sidebar">
+                    Sidebar
+                </SidebarItem>
+            </SidebarCollapse>
+
+            <SidebarItem
+                Href="/icons"
+                Icon="@(new ImageIcon())">
+                Icons
+            </SidebarItem>
+        </SidebarItemGroup>
+
+        <SidebarItemGroup AdditionalClasses="mb-4">
+            <SidebarCollapse
+                Label="Authentication"
+                Icon="@(new LockOpenIcon())">
+                <SidebarItem Href="/authentication/sign-in">
+                    Sign in
+                </SidebarItem>
+                <SidebarItem Href="/authentication/sign-up">
+                    Sign up
+                </SidebarItem>
+                <SidebarItem Href="/authentication/forgot-password">
+                    Forgot password
+                </SidebarItem>
+                <SidebarItem Href="/authentication/reset-password">
+                    Reset password
+                </SidebarItem>
+                <SidebarItem Href="/authentication/profile-lock">
+                    Profile lock
+                </SidebarItem>
+            </SidebarCollapse>
+        </SidebarItemGroup>
+
+        <SidebarItemGroup>
+            <SidebarItem
+                Href="https://flowbite-blazor.org/docs/getting-started/quickstart"
+                Icon="@(new GridIcon())">
+                Quickstart
+            </SidebarItem>
+            <SidebarItem
+                Href="https://github.com/peakflames/flowbite-blazor-admin-dashboard/"
+                Icon="@(new GithubIcon())">
+                Github Repository
+            </SidebarItem>
+            <SidebarItem
+                Href="https://flowbite-blazor.org"
+                Icon="@(new ClipboardArrowIcon())">
+                Flowbite Blazor
+            </SidebarItem>
+            <SidebarItem
+                Href="https://github.com/peakflames/flowbite-blazor-admin-dashboard/issues"
+                Icon="@(new QuestionCircleIcon())">
+                Support
+            </SidebarItem>
+        </SidebarItemGroup>
     </Sidebar>
 </div>

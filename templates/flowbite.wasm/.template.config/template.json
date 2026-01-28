@@ -6,12 +6,12 @@
     "Flowbite",
     "Blazor",
     "WebAssembly",
-    "Client-Side",
-    "CSR"
+    "Admin Dashboard",
+    "ApexCharts"
   ],
-  "name": "Flowbite Blazor WASM Client-Side Application",
+  "name": "Flowbite Blazor WASM Admin Dashboard",
   "defaultName": "BlazorApp",
-  "description": "A project template for creating a beautiful, modern, and responsive Blazor WebAssembly Client-Side Applications. This template can be used for web apps with rich dynamic user interfaces (UIs).",
+  "description": "A project template for creating a beautiful, modern, and responsive admin dashboard with Blazor WebAssembly. Features Flowbite Blazor UI components, Tailwind CSS styling, ApexCharts integration, and full prerendering support.",
   "groupIdentity": "Flowbite.Wasm",
   "identity": "Flowbite.Templates.Wasm.CSharp.9.0",
   "preferNameDirectory": true,
@@ -30,7 +30,7 @@
     {
       "modifiers": [
         {
-          "exclude": [ ".template_config/**" ]
+          "exclude": [ ".template_config/**", "tools/**", "bin/**", "obj/**", "dist/**", "*.pid", "*.log" ]
         }
       ]
     }

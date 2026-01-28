@@ -1,0 +1,304 @@
+@page "/"
+@page "/dashboard"
+@using Flowbite.Components
+@using Flowbite.Icons
+
+
+@if (RenderPageTitle)
+{
+  <AppPageTitle Title="@PageTitleText" />
+}
+
+<div class="mt-px space-y-4">
+  <section class="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
+    <div class="xl:col-span-2">
+      <ChartWidget Title="Sales this week"
+                   Subtitle="$45,385"
+                   ChangeValue="12.5m"
+                   ChangeCaption="vs last week"
+                   Series="RevenueSeries"
+                   IsDarkMode="_isDarkMode">
+        <FooterContent>
+          <div class="mt-4 flex flex-col gap-3 border-t border-gray-200 pt-4 text-sm sm:flex-row sm:items-center sm:justify-between sm:pt-6 dark:border-gray-700">
+            <div class="text-gray-500 dark:text-gray-300">
+              Updated 5 minutes ago
+            </div>
+            <a href="#"
+               class="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+              View reports →
+            </a>
+          </div>
+        </FooterContent>
+      </ChartWidget>
+    </div>
+
+    <StatisticsCard Products="TopProducts"
+                    Customers="TopCustomers"
+                    PeriodLabel="Last 7 days"
+                    ReportHref="#" />
+  </section>
+
+  <section class="grid grid-cols-1 gap-4 xl:grid-cols-2 2xl:grid-cols-3">
+    <ProductMetricCard Title="New products"
+                       Subtitle="2,340"
+                       ChangeValue="12.5m"
+                       ChangeCaption="Since last month"
+                       Series="ProductQuantitySeries"
+                       ChartType="ProductMetricChartType.Quantity"
+                       IsDarkMode="_isDarkMode" />
+
+    <ProductMetricCard Title="Users"
+                       Subtitle="4,420"
+                       ChangeValue="-3.4m"
+                       ChangeCaption="Since last month"
+                       Series="UserSeries"
+                       ChartType="ProductMetricChartType.Users"
+                       IsDarkMode="_isDarkMode" />
+
+    <ProductMetricCard Title="Users"
+                       Subtitle="4,420"
+                       ChangeValue="-3.4m"
+                       ChangeCaption="Since last month"
+                       Series="UserSeries"
+                       ChartType="ProductMetricChartType.Users"
+                       Horizontal="true"
+                       IsDarkMode="_isDarkMode" />
+  </section>
+
+  <section class="grid grid-cols-1 gap-3 xl:grid-cols-2">
+    <CategorySalesReport Title="Sales by category"
+                         Subtitle="Desktop PC"
+                         ChangeValue="2.5m"
+                         ChangeCaption="Since last month"
+                         Series="CategorySalesSeries"
+                         IsDarkMode="_isDarkMode">
+      <HeaderContent>
+        <Button Color="ButtonColor.Primary" Size="ButtonSize.Small">
+          Download report
+        </Button>
+      </HeaderContent>
+      <FooterContent>
+        <div class="flex flex-col gap-3 text-gray-500 sm:flex-row sm:items-center sm:justify-between dark:text-gray-300">
+          <span>Compare the latest period across all product lines.</span>
+          <a href="#"
+             class="inline-flex items-center gap-2 text-primary-600 hover:underline dark:text-primary-400">
+            View detailed analysis →
+          </a>
+        </div>
+      </FooterContent>
+    </CategorySalesReport>
+
+    <TrafficCard Title="Traffic by device"
+                 Subtitle="Desktop"
+                 SeriesName="Traffic share"
+                 Slices="TrafficSlices"
+                 IsDarkMode="_isDarkMode">
+      <BodyContent>
+        <div class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+          @foreach (var device in Devices)
+          {
+            <div class="rounded-lg border border-gray-200 p-3 dark:border-gray-700">
+              <div class="text-xs uppercase text-gray-500 dark:text-gray-400">@device.Name</div>
+              <div class="mt-1 text-xl font-semibold text-gray-900 dark:text-white">@device.Value</div>
+              <div class="@($"mt-1 text-xs {device.ChangeCss}")">@device.ChangeText</div>
+            </div>
+          }
+        </div>
+      </BodyContent>
+      <FooterContent>
+        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-300">
+          <span>Source: Internal analytics</span>
+          <a href="#"
+             class="inline-flex items-center gap-2 text-primary-600 hover:underline dark:text-primary-400">
+            Full report →
+          </a>
+        </div>
+      </FooterContent>
+    </TrafficCard>
+  </section>
+
+  <section class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+    <ActivityList Title="Latest Activity">
+      <ActionContent>
+        <a href="#top"
+           class="inline-flex items-center rounded-lg p-2 text-sm font-medium text-primary-700 hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
+          View all
+        </a>
+      </ActionContent>
+
+      <ChildContent>
+        <Timeline Order="TimelineOrder.Vertical">
+          <TimelineItem Title="Application UI design in Figma"
+                        Date="April 2025">
+            <OrientationContent>
+                <span class="absolute -left-4 flex h-6 w-6 items-center justify-center rounded-full ring-8 ring-white dark:ring-gray-900 bg-primary-200 dark:bg-primary-900">
+                    <CalendarMonthIcon Class="h-4 w-4 text-primary-600 dark:text-primary-400" />
+                </span>
+            </OrientationContent>
+            <ChildContent>
+                <p>
+                    Get access to over 20+ pages including dashboards, kanban boards, calendars, and marketing layouts.
+                </p>
+            </ChildContent>
+            
+          </TimelineItem>
+
+          <TimelineItem Title="Marketing UI code in Flowbite"
+                        Date="March 2025">
+            <p>
+              Get started with dozens of web components and interactive elements built on top of Tailwind CSS.
+            </p>
+            <a href="#top"
+               class="inline-flex items-center text-xs font-medium text-primary-700 hover:underline sm:text-sm dark:text-primary-500">
+              Go to Flowbite Blocks
+              <ChevronRightIcon Class="ms-2 h-4 w-4" />
+            </a>
+          </TimelineItem>
+
+          <TimelineItem Title="Marketing UI design in Figma"
+                        Date="February 2025"
+                        IsLast="true">
+            <p>
+              Get started with dozens of web components and interactive elements built on top of Tailwind CSS.
+            </p>
+          </TimelineItem>
+        </Timeline>
+      </ChildContent>
+    </ActivityList>
+    <InsightsCard />
+  </section>
+
+  <section>
+    <Card Size="CardSize.ExtraLarge" class="max-w-none p-4 shadow-sm sm:p-6">
+      <div class="items-center justify-between lg:flex">
+        <div class="mt-px mb-4 lg:mb-0">
+          <h3 class="mb-2 text-xl font-semibold text-gray-900 dark:text-white">Transactions</h3>
+          <span class="text-base font-normal text-gray-500 dark:text-gray-300">
+            This is a list of latest transactions
+          </span>
+        </div>
+        <div class="items-center justify-between gap-3 space-y-4 sm:flex sm:space-y-0">
+          <div class="flex items-center">
+            <Dropdown Placement="DropdownPlacement.BottomStart"
+                      DismissOnClick="false"
+                      MenuClass="z-20 w-56 space-y-1">
+              <CustomTrigger>
+                <Button Color="ButtonColor.Light" Class="w-fit gap-2 px-4 py-2 whitespace-nowrap">
+                  <span>Filter by status</span>
+                  <ChevronDownIcon Class="h-4 w-4" />
+                </Button>
+              </CustomTrigger>
+              <ChildContent>
+                @foreach (var filter in StatusFilters)
+                {
+                  <DropdownItem>
+                    <label class="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                      <Checkbox Checked="filter.IsSelected"
+                                CheckedChanged="value => OnStatusFilterChanged(filter, value)" />
+                      <span>@filter.Label (@filter.Count)</span>
+                    </label>
+                  </DropdownItem>
+                }
+              </ChildContent>
+            </Dropdown>
+          </div>
+          <div class="flex items-center space-x-4">
+            <Dropdown Inline="true"
+                      Size="DropdownSize.Small"
+                      Placement="DropdownPlacement.BottomEnd"
+                      MenuClass="z-20 min-w-48">
+              <CustomTrigger>
+                <button class="mt-0.5 inline-flex items-center gap-1 rounded-lg p-2 text-sm font-medium text-gray-500 hover:text-gray-900 focus:outline-none dark:text-gray-300 dark:hover:text-white">
+                  <span>@(SelectedDateRange?.Label ?? "Select range")</span>
+                  <ChevronDownIcon Class="h-4 w-4" />
+                </button>
+              </CustomTrigger>
+              <ChildContent>
+                @if (SelectedDateRange is not null)
+                {
+                  <DropdownHeader>
+                    <span class="block truncate text-gray-900 dark:text-white">@GetDateRangeSummary(SelectedDateRange)</span>
+                  </DropdownHeader>
+                }
+                @foreach (var option in DateRangeOptions)
+                {
+                  <DropdownItem OnClick="@(args => SelectDateRange(option))">
+                    <span class="@(option == SelectedDateRange ? "font-semibold text-gray-900 dark:text-white" : "font-normal text-gray-700 dark:text-gray-200")">
+                      @option.Label
+                    </span>
+                  </DropdownItem>
+                }
+                <DropdownDivider />
+                <DropdownItem>
+                  <span class="font-normal text-gray-700 dark:text-gray-200">Custom...</span>
+                </DropdownItem>
+              </ChildContent>
+            </Dropdown>
+          </div>
+        </div>
+      </div>
+
+      <Table class="mt-6 min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+        <TableHead class="bg-gray-50 dark:bg-gray-700">
+          <TableRow>
+            @foreach (var header in TransactionHeaders)
+            {
+              <TableHeadCell class="px-4 py-3 text-left text-sm font-semibold text-gray-500 uppercase tracking-wide dark:text-gray-300">
+                @header
+              </TableHeadCell>
+            }
+          </TableRow>
+        </TableHead>
+        <TableBody class="divide-y divide-gray-200 dark:divide-gray-700">
+          @foreach (var transaction in Transactions)
+          {
+            <TableRow class="text-sm">
+              <TableCell class="px-4 py-3 font-medium text-gray-900 dark:text-white">
+                @transaction.Name
+              </TableCell>
+              <TableCell class="px-4 py-3 text-gray-500 dark:text-gray-300">
+                @transaction.DisplayDate
+              </TableCell>
+              <TableCell class="px-4 py-3 text-gray-900 dark:text-white">
+                @transaction.Amount
+              </TableCell>
+              <TableCell class="px-4 py-3 text-gray-500 dark:text-gray-300">
+                @transaction.ReferenceNumber
+              </TableCell>
+              <TableCell class="px-4 py-3">
+                <div class="flex items-center gap-2 text-gray-500 dark:text-gray-300">
+                  @if (transaction.Brand == PaymentBrand.Mastercard)
+                  {
+                    <MastercardIcon class="h-6 w-6" />
+                  }
+                  else
+                  {
+                    <VisaIcon class="h-6 w-6" />
+                  }
+                  <span class="font-medium text-gray-900 dark:text-white">••• @transaction.PaymentSuffix.ToString("000")</span>
+                </div>
+              </TableCell>
+              <TableCell class="px-4 py-3">
+                <span class="@GetStatusBadgeClasses(transaction.Status)">@GetStatusLabel(transaction.Status)</span>
+              </TableCell>
+            </TableRow>
+          }
+        </TableBody>
+      </Table>
+
+      <div class="-mb-1 mt-6 flex items-center justify-between pt-3 sm:pt-6">
+        <div class="font-normal text-gray-500 dark:text-gray-300">
+          <span class="mr-2 text-sm text-gray-500 dark:text-gray-300">Showing</span>
+          <span class="rounded-lg border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 dark:border-gray-700 dark:text-gray-300">
+            @(SelectedDateRange?.Label ?? "Date range")
+          </span>
+        </div>
+        <a href="#top"
+           class="inline-flex items-center gap-1 rounded-lg p-1 text-xs font-medium uppercase text-primary-700 hover:bg-gray-100 sm:text-sm dark:text-primary-500 dark:hover:bg-gray-700">
+          Transactions report
+          <ChevronRightIcon Class="h-4 w-4" />
+        </a>
+      </div>
+    </Card>
+  </section>
+</div>

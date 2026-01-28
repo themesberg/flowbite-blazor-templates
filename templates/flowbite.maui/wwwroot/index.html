@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowbite Dashboard</title>
+    <base href="/" />
+    <link rel="stylesheet" href="Flowbite.Maui.styles.css" />
+    <link rel="stylesheet" href="_content/Flowbite/flowbite.min.css" />
+    <link rel="stylesheet" href="css/app.min.css" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+
+    <script>
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+    </script>
+
+</head>
+
+<body class="dark:bg-gray-900 antialiased">
+
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        <span id="blazor-error-message">An unhandled error has occurred.</span>
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss" onclick="document.getElementById('blazor-error-ui').style.display='none';">X</span>
+    </div>
+    <script>
+        // Capture and display actual error messages
+        const originalError = console.error;
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            const errorUI = document.getElementById('blazor-error-ui');
+            const errorMsg = document.getElementById('blazor-error-message');
+            if (errorUI && errorMsg) {
+                const message = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ');
+                errorMsg.textContent = message.substring(0, 500);
+                errorUI.style.display = 'block';
+            }
+        };
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error('JS Error:', message, 'at', source, 'line', lineno);
+            return false;
+        };
+    </script>
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script src="js/app.js"></script>
+    <script src="_content/Flowbite/js/floating-ui.bundle.js"></script>
+    <script src="_content/Flowbite/flowbite.js"></script>
+</body>
+
+</html>

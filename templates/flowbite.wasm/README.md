@@ -1,47 +1,142 @@
-# Flowbite.Wasm
+# Flowbite Blazor WASM Admin Dashboard
 
-## Development Setup
+A beautiful, modern admin dashboard built with Blazor WebAssembly, Flowbite Blazor components, Tailwind CSS, and ApexCharts.
 
-1. Install standalone Tailwind CSS CLI executable:
+## Features
 
-   Mac/Linux:
+- Full admin dashboard with 14+ pages
+- Dark mode support
+- Responsive design
+- ApexCharts integration for data visualization
+- CRUD operations examples
+- Settings and profile pages
+- Prerendering support for fast initial load
 
-   ```bash
-   mkdir ./tools && cd ./tools && curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64  && chmod +x tailwindcss-macos-arm64 && mv tailwindcss-macos-arm64 tailwindcss
-   ```
+## Quick Start
 
-   Windows:
+```bash
+# Build and run in background (auto-downloads Tailwind CSS)
+python build.py start
 
-   ```pwsh
-   mkdir ./tools -Force; `
-   cd ./tools; `
-   Invoke-WebRequest -Uri "https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe" `
-      -OutFile "tailwindcss.exe" `
-      -UseBasicParsing ; `
-   cd ..
+# Open http://localhost:5269
+```
 
-   ```
+## Build Commands
 
-1. Build the solution
+The project includes a `build.py` script for all common operations:
 
-   ```bash
-   dotnet build
-   ```
+```bash
+python build.py build        # Build the solution
+python build.py run          # Run in foreground
+python build.py start        # Build and run in background
+python build.py stop         # Stop background process
+python build.py status       # Check if running
+python build.py watch        # Hot reload development
+python build.py publish      # Create production build
+python build.py test-publish # Test prerendering
+python build.py log          # View application logs
+```
 
-1. Run the Blazor WASM Static Web App
+### Prerequisites
 
-   ```bash
-   dotnet run
-   ```
+- Python 3
+- .NET 9 SDK
+- psutil (optional, for background process management): `pip install psutil`
 
-   Then open <http://localhost:5269/> in your browser.
+## Project Structure
+
+```
+Flowbite.Wasm/
+├── Pages/          # Dashboard pages (14+ pages)
+├── Components/     # Reusable Razor components
+├── Layout/         # Layout components (MainLayout, StackedLayout)
+├── Services/       # Application services
+├── Domain/         # Data models
+├── Charts/         # ApexCharts configuration
+├── wwwroot/        # Static assets (CSS, JS, images)
+├── build.py        # Build automation script
+└── CLAUDE.md       # Claude Code guidance
+```
 
 ## Development Workflow
 
-### Local Development
+### Background Development
 
-The solution is configured for two development modes:
+For development, use background mode to keep the app running while you work:
 
-1. Debug/Development (default):
-   - Use `dotnet watch`
-   - F5 to run and debug
+```bash
+# Start in background
+python build.py start
+
+# Check status
+python build.py status
+
+# View logs
+python build.py log
+
+# Stop when done
+python build.py stop
+```
+
+### Hot Reload Development
+
+For immediate feedback on changes:
+
+```bash
+python build.py watch
+```
+
+### Production Build
+
+Create an optimized production build with prerendering:
+
+```bash
+python build.py publish
+```
+
+The output will be in `dist/wwwroot/`. To serve locally:
+
+```bash
+dotnet tool install -g dotnet-serve
+cd dist/wwwroot && dotnet serve -p 8080
+```
+
+## Direct .NET CLI Usage
+
+If you prefer using the .NET CLI directly:
+
+```bash
+# Build
+dotnet build Flowbite.Wasm.csproj
+
+# Run
+dotnet run --project Flowbite.Wasm.csproj
+
+# Watch
+dotnet watch --project Flowbite.Wasm.csproj
+
+# Publish
+dotnet publish Flowbite.Wasm.csproj -c Release -o dist
+```
+
+**Note:** Direct CLI usage requires manually downloading Tailwind CSS first. Use `build.py` for automatic setup.
+
+## Tailwind CSS
+
+The project uses Tailwind CSS v4.1.8 with the CSS-first configuration approach. The `build.py` script automatically downloads the Tailwind executable on first run.
+
+CSS files:
+- Input: `wwwroot/css/app.css`
+- Output: `wwwroot/css/app.min.css`
+
+## Technologies
+
+- .NET 9 / Blazor WebAssembly
+- Flowbite Blazor components
+- Tailwind CSS v4.1.8
+- ApexCharts (Blazor-ApexCharts)
+- BlazorWasmPreRendering.Build
+
+## License
+
+MIT

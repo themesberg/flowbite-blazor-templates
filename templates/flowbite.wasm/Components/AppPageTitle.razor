@@ -1,0 +1,12 @@
+@namespace Flowbite.Wasm.Components
+@using Microsoft.AspNetCore.Components
+
+@if (!string.IsNullOrWhiteSpace(Title))
+{
+  <PageTitle>Flowbite Blazor Admin Dashboard - @Title</PageTitle>
+}
+
+@code {
+  [Parameter, EditorRequired]
+  public string Title { get; set; } = string.Empty;
+}

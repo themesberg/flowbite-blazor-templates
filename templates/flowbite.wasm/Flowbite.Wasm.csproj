@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
@@ -15,19 +15,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.0" />
-    <PackageReference Include="Flowbite" Version="[0.1.0-beta,)" />
-    <PackageReference Include="Flowbite.ExtendedIcons" Version="[0.0.5-alpha,)" />
-    <PackageReference Include="BlazorWasmPreRendering.Build" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="9.0.0" />
+    <PackageReference Include="Flowbite" Version="[0.2.5-beta,)" />
+    <PackageReference Include="Flowbite.ExtendedIcons" Version="[0.0.6-alpha,)" />
+    <PackageReference Include="BlazorWasmPreRendering.Build" Version="6.0.0" />
+    <PackageReference Include="Blazor-ApexCharts" Version="6.0.2" />
   </ItemGroup>
 
   <Target Name="TailwindWindows" BeforeTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
-    <Error Condition="!Exists('.\tools\tailwindcss.exe')" Text="Tailwind executable not found at .\tools\tailwindcss.exe" />
-    <Exec 
-      Command=".\tools\tailwindcss.exe -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" 
+    <Error Condition="!Exists('.\tools\tailwindcss.exe')" Text="Tailwind executable not found at .\tools\tailwindcss.exe. Run 'python build.py build' to auto-download." />
+    <Exec
+      Command=".\tools\tailwindcss.exe -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css"
       ConsoleToMSBuild="true"
       StandardOutputImportance="high"
       StandardErrorImportance="high"
@@ -39,9 +39,9 @@
   </Target>
 
   <Target Name="TailwindNonWindows" BeforeTargets="Build" Condition="'$(OS)' != 'Windows_NT'">
-    <Error Condition="!Exists('./tools/tailwindcss')" Text="Tailwind executable not found at ./tools/tailwindcss" />
-    <Exec 
-      Command="./tools/tailwindcss -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css" 
+    <Error Condition="!Exists('./tools/tailwindcss')" Text="Tailwind executable not found at ./tools/tailwindcss. Run 'python build.py build' to auto-download." />
+    <Exec
+      Command="./tools/tailwindcss -i ./wwwroot/css/app.css -o ./wwwroot/css/app.min.css"
       ConsoleToMSBuild="true"
       StandardOutputImportance="high"
       StandardErrorImportance="high"

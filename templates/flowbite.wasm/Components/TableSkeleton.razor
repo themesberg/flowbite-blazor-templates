@@ -1,0 +1,54 @@
+@*
+    TableSkeleton Component
+
+    Displays an animated loading placeholder for tables while data is being fetched.
+    Uses the native Flowbite Skeleton component for consistent styling.
+
+    Parameters:
+    - Rows: Number of skeleton rows to display (default: 5)
+    - Columns: Number of columns in the table (default: 5)
+*@
+
+<Table>
+    <TableHead class="border-y border-gray-200 bg-gray-100 dark:border-gray-700">
+        <TableRow>
+            @for (int i = 0; i < Columns; i++)
+            {
+                <TableHeadCell class="p-4">
+                    <Skeleton Variant="SkeletonVariant.Text" Class="w-20" />
+                </TableHeadCell>
+            }
+        </TableRow>
+    </TableHead>
+    <TableBody class="divide-y">
+        @for (int row = 0; row < Rows; row++)
+        {
+            <TableRow>
+                @for (int col = 0; col < Columns; col++)
+                {
+                    <TableCell class="p-4">
+                        <Skeleton Variant="SkeletonVariant.Text" Class="@GetWidth(col)" />
+                    </TableCell>
+                }
+            </TableRow>
+        }
+    </TableBody>
+</Table>
+
+@code {
+    /// <summary>
+    /// Number of skeleton rows to display.
+    /// </summary>
+    [Parameter]
+    public int Rows { get; set; } = 5;
+
+    /// <summary>
+    /// Number of columns in the table.
+    /// </summary>
+    [Parameter]
+    public int Columns { get; set; } = 5;
+
+    private static readonly string[] Widths = { "w-16", "w-24", "w-32", "w-20", "w-28", "w-36" };
+
+    private string GetWidth(int col) => Widths[col % Widths.Length];
+}

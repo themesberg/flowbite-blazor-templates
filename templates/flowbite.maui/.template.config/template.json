@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "PeakFlames",
+  "classifications": [
+    "MAUI",
+    "Flowbite",
+    "Blazor",
+    "Hybrid",
+    "Desktop",
+    "Admin Dashboard",
+    "ApexCharts"
+  ],
+  "name": "Flowbite Blazor MAUI Admin Dashboard",
+  "defaultName": "MauiApp",
+  "description": "A project template for creating a beautiful, modern desktop admin dashboard with .NET MAUI Blazor Hybrid. Features Flowbite Blazor UI components, Tailwind CSS styling, and ApexCharts integration. Supports Windows and macOS.",
+  "groupIdentity": "Flowbite.Maui",
+  "identity": "Flowbite.Templates.Maui.CSharp.10.0",
+  "preferNameDirectory": true,
+  "primaryOutputs": [
+    {
+      "path": "Flowbite.Maui.csproj"
+    }
+  ],
+  "shortName": "flowbite-blazor-maui",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Flowbite.Maui",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ ".template_config/**", "tools/**", "bin/**", "obj/**", "dist/**", "*.pid", "*.log" ]
+        }
+      ]
+    }
+  ]
+}

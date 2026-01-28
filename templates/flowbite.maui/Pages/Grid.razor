@@ -1,0 +1,51 @@
+@page "/grid"
+
+@using QuickGridAlign = Microsoft.AspNetCore.Components.QuickGrid.Align
+@using Flowbite.Maui.Domain
+@inject HttpClient Http
+
+<AppPageTitle Title="Products Grid" />
+
+<h1 class="mb-2 text-2xl font-semibold">Products Grid</h1>
+
+<div class="grid flowbite-grid text-xs">
+  <QuickGrid Items="@FilteredProducts" Theme="flowbite">
+    <PropertyColumn Property="@(p => p.Id)" Title="#" Sortable="true" Align="QuickGridAlign.Center" />
+    <PropertyColumn Property="@(p => p.Name)" Title="Name" Sortable="true">
+      <ColumnOptions>
+        <div class="search-box">
+          <input type="search"
+                 autofocus
+                 @bind="_searchTerm"
+                 @bind:event="oninput"
+                 placeholder="Search products..." />
+        </div>
+      </ColumnOptions>
+    </PropertyColumn>
+    <PropertyColumn Property="@(p => p.Technology)" Title="Technology" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Category)" Title="Category" Sortable="true" />
+    <PropertyColumn Property="@(p => p.Price)" Title="Price" Sortable="true" Align="QuickGridAlign.Center" />
+    <PropertyColumn Property="@(p => p.Discount)" Title="Discount" Sortable="true" Align="QuickGridAlign.Center" />
+  </QuickGrid>
+</div>
+
+@code {
+  private List<Product> _products = new();
+  private string _searchTerm = string.Empty;
+
+  private IQueryable<Product> FilteredProducts =>
+    string.IsNullOrWhiteSpace(_searchTerm)
+      ? _products.AsQueryable()
+      : _products
+        .Where(p =>
+          p.Name.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) ||
+          p.Technology.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase) ||
+          p.Category.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase))
+        .AsQueryable();
+
+  protected override async Task OnInitializedAsync()
+  {
+    var data = await Http.GetFromJsonAsync<List<Product>>("data/products.json");
+    _products = data ?? new List<Product>();
+  }
+}
